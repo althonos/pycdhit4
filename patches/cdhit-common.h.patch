@@ -1,8 +1,30 @@
 diff --git a/cdhit-common.h b/cdhit-common.h
-index ee26448..99e1edc 100644
+index ee26448..bbaa138 100644
 --- a/cdhit-common.h
 +++ b/cdhit-common.h
-@@ -181,7 +181,7 @@ class ScoreMatrix { //Matrix
+@@ -86,6 +86,21 @@ typedef unsigned short UINT2;
+ 
+ using namespace std;
+ 
++static const char aa[] = {"ARNDCQEGHILKMFPSTWYVBZX"};
++//{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,2,6,20};
++static const int aa2idx[] = {0, 2, 4, 3, 6, 13,7, 8, 9,20,11,10,12, 2,20,14,
++                5, 1,15,16,20,19,17,20,18, 6};
++    // idx for  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P
++    //          Q  R  S  T  U  V  W  X  Y  Z
++    // so  aa2idx[ X - 'A'] => idx_of_X, eg aa2idx['A' - 'A'] => 0,
++    // and aa2idx['M'-'A'] => 12
++static const int na2idx[] = {0, 4, 1, 4, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4,
++                4, 4, 4, 3, 3, 4, 4, 4, 4, 4};
++    // idx for  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P
++    //          Q  R  S  T  U  V  W  X  Y  Z
++    // so aa2idx[ X - 'A'] => idx_of_X, eg aa2idx['A' - 'A'] => 0,
++    // and aa2idx['M'-'A'] => 4
++
+ // the parent containter must guarantee continuous memory allocation.
+ // std::valarray could be used instead of std::vector.
+ template<class TYPE>
+@@ -181,7 +196,7 @@ class ScoreMatrix { //Matrix
  		ScoreMatrix();
  		void init();
  		void set_gap(int gap1, int ext_gap1);
@@ -11,7 +33,7 @@ index ee26448..99e1edc 100644
  		void set_to_na();
  		void set_match( int score );
  		void set_mismatch( int score );
-@@ -191,27 +191,6 @@ class ScoreMatrix { //Matrix
+@@ -191,27 +206,6 @@ class ScoreMatrix { //Matrix
  typedef NVector<INTs>      VectorIntX;
  typedef Vector<VectorIntX> MatrixIntX;
  
@@ -39,7 +61,7 @@ index ee26448..99e1edc 100644
  struct IndexCount
  {
  	int index;
-@@ -256,6 +235,7 @@ struct Options
+@@ -256,6 +250,7 @@ struct Options
  	int     NAA;
  	int     NAAN;
  	int     NAA_top_limit;
@@ -47,7 +69,7 @@ index ee26448..99e1edc 100644
  
  	size_t  max_memory; // -M: 400,000,000 in bytes
  	int     min_length; // -l: 10 bases
-@@ -296,6 +276,7 @@ struct Options
+@@ -296,6 +291,7 @@ struct Options
  	bool    has2D;
  	bool    isEST;
  	bool    is454;
@@ -55,7 +77,7 @@ index ee26448..99e1edc 100644
  	bool    useIdentity;
  	bool    useDistance;
  	bool    backupFile;
-@@ -310,6 +291,8 @@ struct Options
+@@ -310,6 +306,8 @@ struct Options
      int     sort_output;  // -sc
      int     sort_outputf; // -sf
  
@@ -64,7 +86,7 @@ index ee26448..99e1edc 100644
  	Options(){
  		backupFile = false;
  		useIdentity = false;
-@@ -317,8 +300,10 @@ struct Options
+@@ -317,8 +315,10 @@ struct Options
  		has2D = false;
  		isEST = false;
  		is454 = false;
@@ -75,7 +97,7 @@ index ee26448..99e1edc 100644
  		cluster_thd = 0.9;
  		distance_thd = 0.0;
  		max_memory = 800000000;
-@@ -362,6 +347,8 @@ struct Options
+@@ -362,6 +362,8 @@ struct Options
  	bool SetOption2D( const char *flag, const char *value );
  	bool SetOptionEST( const char *flag, const char *value );
  	bool SetOptions( int argc, char *argv[], bool twodata=false, bool est=false );
@@ -84,7 +106,7 @@ index ee26448..99e1edc 100644
  
  	void Validate();
  	void ComputeTableLimits( int min_len, int max_len, int typical_len, size_t mem_need );
-@@ -369,8 +356,6 @@ struct Options
+@@ -369,8 +371,6 @@ struct Options
  	void Print();
  };
  
@@ -93,7 +115,7 @@ index ee26448..99e1edc 100644
  struct Sequence
  {
  	// real sequence, if it is not stored swap file:
-@@ -420,7 +405,7 @@ struct Sequence
+@@ -420,7 +420,7 @@ struct Sequence
  	void Swap( Sequence & other );
  	int Format();
  
@@ -102,7 +124,7 @@ index ee26448..99e1edc 100644
      void trim(int trim_len);
  
  	void SwapIn();
-@@ -483,6 +468,7 @@ struct WorkingBuffer
+@@ -483,6 +483,7 @@ struct WorkingBuffer
  	Vector<int> aan_list_comp;
  	Vector<char> seqi_comp;
  	int total_bytes;
@@ -110,7 +132,7 @@ index ee26448..99e1edc 100644
  
  	WorkingBuffer( size_t frag=0, size_t maxlen=0, const Options & options=Options() ){
  		Set( frag, maxlen, options );
-@@ -495,6 +481,7 @@ struct WorkingBuffer
+@@ -495,6 +496,7 @@ struct WorkingBuffer
  		size_t band = max_len*max_len;
  		if( est ) m = m * m;
  		if( band > options.band_width ) band = options.band_width;
@@ -118,7 +140,7 @@ index ee26448..99e1edc 100644
  		taap.resize( m );
  		aap_list.resize( max_len );
  		aap_begin.resize( m );
-@@ -526,13 +513,10 @@ struct WorkingBuffer
+@@ -526,13 +528,10 @@ struct WorkingBuffer
  		total_bytes += max_len*(band*sizeof(int)+sizeof(VectorInt64));
  	}
  
@@ -133,7 +155,7 @@ index ee26448..99e1edc 100644
  
  class SequenceDB
  {
-@@ -594,11 +578,11 @@ class SequenceDB
+@@ -594,11 +593,11 @@ class SequenceDB
  		//    WorkingParam & param, WorkingBuffer & buf, const Options & options );
  
  		void ComputeDistance( const Options & options );
@@ -148,7 +170,7 @@ index ee26448..99e1edc 100644
  		int  CheckOneAA( Sequence *seq, WordTable & tab, WorkingParam & par, WorkingBuffer & buf, const Options & opt );
  };
  
-@@ -609,17 +593,17 @@ void bomb_error(const char *message, const char *message2);
+@@ -609,17 +608,17 @@ void bomb_error(const char *message, const char *message2);
  void bomb_warning(const char *message);
  void bomb_warning(const char *message, const char *message2);
  void format_seq(char *seq);
@@ -170,7 +192,7 @@ index ee26448..99e1edc 100644
  int print_usage_2d (char *arg);
  int print_usage_est (char *arg);
  int print_usage_div (char *arg);
-@@ -628,12 +612,12 @@ int print_usage_est_2d (char *arg);
+@@ -628,12 +627,12 @@ int print_usage_est_2d (char *arg);
  int upper_bound_length_rep(int len, const Options & options );
  void cal_aax_cutoff (double &aa1_cutoff, double &aa2_cutoff, double &aan_cutoff,
  		double NR_clstr, int tolerance, int naa_stat_start_percent,

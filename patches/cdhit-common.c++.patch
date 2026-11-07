@@ -1,5 +1,5 @@
 diff --git a/cdhit-common.c++ b/cdhit-common.c++
-index 9582f22..c2236f7 100644
+index 9582f22..aa2bb66 100644
 --- a/cdhit-common.c++
 +++ b/cdhit-common.c++
 @@ -26,14 +26,15 @@
@@ -23,40 +23,43 @@ index 9582f22..c2236f7 100644
  
  #define WITH_OPENMP " (+OpenMP)"
  
-@@ -49,14 +50,14 @@
- //class function definition
- const char aa[] = {"ARNDCQEGHILKMFPSTWYVBZX"};
- //{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,2,6,20};
--int aa2idx[] = {0, 2, 4, 3, 6, 13,7, 8, 9,20,11,10,12, 2,20,14,
-+const int aa2idx[] = {0, 2, 4, 3, 6, 13,7, 8, 9,20,11,10,12, 2,20,14,
-                 5, 1,15,16,20,19,17,20,18, 6};
-     // idx for  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P
-     //          Q  R  S  T  U  V  W  X  Y  Z
-     // so  aa2idx[ X - 'A'] => idx_of_X, eg aa2idx['A' - 'A'] => 0,
-     // and aa2idx['M'-'A'] => 12
+@@ -47,16 +48,9 @@
+ #endif
  
+ //class function definition
+-const char aa[] = {"ARNDCQEGHILKMFPSTWYVBZX"};
+-//{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,2,6,20};
+-int aa2idx[] = {0, 2, 4, 3, 6, 13,7, 8, 9,20,11,10,12, 2,20,14,
+-                5, 1,15,16,20,19,17,20,18, 6};
+-    // idx for  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P
+-    //          Q  R  S  T  U  V  W  X  Y  Z
+-    // so  aa2idx[ X - 'A'] => idx_of_X, eg aa2idx['A' - 'A'] => 0,
+-    // and aa2idx['M'-'A'] => 12
+-
 -int BLOSUM62[] = {
++
++
 +const int BLOSUM62[] = {
    4,                                                                  // A
   -1, 5,                                                               // R
   -2, 0, 6,                                                            // N
-@@ -85,13 +86,13 @@ int BLOSUM62[] = {
+@@ -84,14 +78,7 @@ int BLOSUM62[] = {
+ //0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19  2  6 20
  };
  
- 
+-
 -int na2idx[] = {0, 4, 1, 4, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-+const int na2idx[] = {0, 4, 1, 4, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-                 4, 4, 4, 3, 3, 4, 4, 4, 4, 4};
-     // idx for  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P
-     //          Q  R  S  T  U  V  W  X  Y  Z
-     // so aa2idx[ X - 'A'] => idx_of_X, eg aa2idx['A' - 'A'] => 0,
-     // and aa2idx['M'-'A'] => 4
+-                4, 4, 4, 3, 3, 4, 4, 4, 4, 4};
+-    // idx for  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P
+-    //          Q  R  S  T  U  V  W  X  Y  Z
+-    // so aa2idx[ X - 'A'] => idx_of_X, eg aa2idx['A' - 'A'] => 0,
+-    // and aa2idx['M'-'A'] => 4
 -int BLOSUM62_na[] = {
 +const int BLOSUM62_na[] = {
    2,                  // A
   -2, 2,               // C
   -2,-2, 2,            // G
-@@ -103,3983 +104,10 @@ int BLOSUM62_na[] = {
+@@ -103,3983 +90,10 @@ int BLOSUM62_na[] = {
  //0  1  2  3  3  4  5
  };
  
@@ -4043,7 +4046,7 @@ index 9582f22..c2236f7 100644
  	{
  		// N=5   N=4   N=3   N=2
  		{  0,    0,    0,    7,  },  // 40%
-@@ -4406,3 +434,3949 @@ int naa_stat[5][61][4] = {
+@@ -4406,3 +420,3949 @@ int naa_stat[5][61][4] = {
  	},
  };
  

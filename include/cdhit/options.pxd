@@ -4,6 +4,8 @@ from libcpp cimport bool
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 
+from cdhit.score_matrix cimport ScoreMatrix
+
 cdef extern from "cdhit-common.h" nogil:
 
     cppclass Options:
@@ -64,6 +66,8 @@ cdef extern from "cdhit-common.h" nogil:
 
         int     sort_output   #  -sc
         int     sort_outputf  #  -sf
+
+        ScoreMatrix mat
 
         Options()
 

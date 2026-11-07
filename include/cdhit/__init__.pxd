@@ -17,6 +17,10 @@ cdef extern from "cdhit-common.h" nogil:
     const size_t MAX_BIN_SWAP
     const size_t MAX_TABLE_SIZE
     const size_t CLOCK_TICKS
+
+    const char[MAX_AA] aa
+    const char[26] aa2idx
+    const char[26] na2idx
     
     enum:
         FAILED_FUNC
