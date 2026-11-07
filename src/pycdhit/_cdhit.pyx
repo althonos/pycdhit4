@@ -57,8 +57,8 @@ def cluster(
     *,
     double identity_threshold = DEFAULT_OPTIONS.cluster_thd,
     int cpus = 0,
-    gap_open: int = 11,
-    gap_extend: int = 1,
+    gap_open: int = -DEFAULT_OPTIONS.mat.gap,
+    gap_extend: int = -DEFAULT_OPTIONS.mat.ext_gap,
     ScoringMatrix scoring_matrix not None = ScoringMatrix.from_name("BLOSUM62")
 ) -> Clustering:
     """Cluster protein sequences with the CD-HIT algorithm.
