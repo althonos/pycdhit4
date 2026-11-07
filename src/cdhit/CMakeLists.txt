@@ -45,13 +45,7 @@ patch_sources(CDHIT_HEADERS CDHIT_PATCHED_HEADERS)
 # --- Patch/copy sources -------------------------------------------------------
 
 set(CDHIT_SOURCES
-    cdhit-2d.c++
-    cdhit-454.c++
-    # cdhit.c++
     cdhit-common.c++
-    cdhit-div.c++
-    cdhit-est-2d.c++
-    cdhit-est.c++
     cdhit-utility.c++
 )
 patch_sources(CDHIT_SOURCES CDHIT_PATCHED_SOURCES)
@@ -60,4 +54,11 @@ patch_sources(CDHIT_SOURCES CDHIT_PATCHED_SOURCES)
 
 add_library(cdhit STATIC ${CDHIT_PATCHED_HEADERS} ${CDHIT_PATCHED_SOURCES})
 target_include_directories(cdhit PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
-target_link_libraries(cdhit PUBLIC OpenMP::OpenMP_CXX)
+
+if(OpenMP_CXX_FOUND)
+    message(INFO "Building CD-HIT with OpenMP support")
+    target_link_libraries(cdhit PUBLIC OpenMP::OpenMP_CXX)
+else()
+    message(INFO "Building CD-HIT without OpenMP support")
+    target_compile_definitions(cdhit PUBLIC NO_OPENMP)
+endif()
