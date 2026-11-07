@@ -1,6 +1,5 @@
 # coding: utf-8
-"""Test doctest contained tests in every file of the module.
-"""
+"""Test doctest contained tests in every file of the module."""
 
 import configparser
 import doctest
@@ -59,15 +58,13 @@ def load_tests(loader, tests, ignore):
     packages = [None, pycdhit]
 
     for pkg in iter(packages.pop, None):
-        for (_, subpkgname, subispkg) in pkgutil.walk_packages(pkg.__path__):
+        for _, subpkgname, subispkg in pkgutil.walk_packages(pkg.__path__):
             # do not import __main__ module to avoid side effects!
             if subpkgname == "__main__" or subpkgname.startswith("tests"):
                 continue
             # import the submodule and add it to the tests
             module = importlib.import_module(".".join([pkg.__name__, subpkgname]))
-            globs = dict(
-                **module.__dict__
-            )
+            globs = dict(**module.__dict__)
             tests.addTests(
                 doctest.DocTestSuite(
                     module,
