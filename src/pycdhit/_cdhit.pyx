@@ -17,7 +17,12 @@ References:
 
 # --- C imports --------------------------------------------------------------
 
+from libc.string cimport strncmp
+
 from cpython.unicode cimport PyUnicode_AsUTF8AndSize
+
+cimport scoring_matrices
+from scoring_matrices cimport ScoringMatrix
 
 cimport cdhit
 from cdhit.options cimport Options
@@ -50,8 +55,11 @@ class Clustering:
 def cluster(
     sequences: typing.Iterable[str],
     *,
-    double identity_threshold: float = DEFAULT_OPTIONS.cluster_thd,
-    cpus: typing.Optional[int] = None,
+    double identity_threshold = DEFAULT_OPTIONS.cluster_thd,
+    int cpus = 0,
+    gap_open: int = 11,
+    gap_extend: int = 1,
+    ScoringMatrix scoring_matrix not None = ScoringMatrix.from_name("BLOSUM62")
 ) -> Clustering:
     """Cluster protein sequences with the CD-HIT algorithm.
 
@@ -63,8 +71,14 @@ def cluster(
         identity_threshold (`float`): The identity threshold with which to
             cluster the sequences (``-c`` parameter from CD-HIT).
         cpus (`int`): The number of parallel threads to use to clustering.
-            Pass 0 or `None` to use all available system threads, as given
+            Pass 0 to use all available system threads, as given
             by `os.cpu_count`.
+        gap_open (`int`): The penalty for opening a new gap in the pairwise
+            alignment.
+        gap_extend (`int`): The penalty for extending an existing gap in the
+            pairwise alignment.
+        scoring_matrix (`~scoring_matrices.ScoringMatrix`): The scoring 
+            matrix to use for pairwise alignments. Defaults to BLOSUM62.
 
     """
     cdef ssize_t     length
@@ -80,23 +94,49 @@ def cluster(
     options.input = "n/a"   # bogus filename so CD-HIT doesn't complain
     options.output = "n/a"  # bogus filename so CD-HIT doesn't complain
 
-    options.cluster_thd = identity_threshold
-
-    if cpus is None or cpus <= 0:
+    # Set parallelism from parameters
+    if cpus < 0:
+        raise ValueError(f"`cpus` must be positive or null, got {cpus!r}")
+    elif cpus == 0:
         _cpus = os.cpu_count() or 1
         options.threads = max(_cpus, 1)
+    else:
+        options.threads = cpus
 
+    # Update clustering parameters
+    if identity_threshold >= 1 or identity_threshold <= 0:
+        raise ValueError(f"`identity_threshold` must be a float between 0 and 1, got {identity_threshold!r}")
+    options.cluster_thd = identity_threshold
+
+    # Update Smith-Waterman parameters
+    if gap_open <= 0:
+        raise ValueError(f"`gap_open` must be a positive number, got {gap_open!r}")
+    if gap_extend <= 0:
+        raise ValueError(f"`gap_extend` must be a positive number, got {gap_extend!r}")
+    options.mat.set_gap(-gap_open, -gap_extend)
+    if scoring_matrix is not None:
+        if not scoring_matrix.is_integer():
+            raise ValueError(f"`scoring_matrix` requires an integer scoring matrix")
+        elif strncmp(scoring_matrix.alphabet_ptr(), cdhit.aa, cdhit.MAX_AA) != 0:
+            raise ValueError(f"`scoring_matrix` has an invalid alphabet")
+        for i in range(cdhit.MAX_AA):
+            for j in range(cdhit.MAX_AA):
+                ai = chr(cdhit.aa[i])
+                aj = chr(cdhit.aa[j])
+                options.mat.matrix[i][j] = <int> scoring_matrix[ai, aj]
+
+    # Use CD-HIT validation code to ensure options are consistent
     try:
         options.Validate()
     except Exception as exc:
         raise ValueError("Failed to validate parameters") from exc
 
-    #?
+    # Initialize the degeneration rates
     options.InitNAA(cdhit.MAX_UAA)
     options.NAAN = options.NAAN_array[options.NAA]
     db.NAAN = options.NAAN_array[options.NAA]
 
-    # seq_db.Read(...)
+    # Append sequence data to a new sequence database (seq_db.Read(...))
     for i, sequence in enumerate(sequences):
         s = PyUnicode_AsUTF8AndSize(sequence, &length)
         seq = new Sequence()
@@ -105,6 +145,7 @@ def cluster(
         seq.index = db.sequences.size()
         db.sequences.Append(seq)
 
+    # Run clustering algorithm with GIL relaxed
     with nogil:
         db.SortDivide(options)
         db.DoClustering(options)

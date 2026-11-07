@@ -40,9 +40,26 @@ the following advantages:
 - **no intermediate files**: Everything happens in memory, through Python 
   objects you control, so you don't have to invoke the CD-HIT CLI using a
   sub-process and temporary files.
+- **custom alignment parameters**: The pairwise alignment can receive custom
+  parameters rather than the default CD-HIT ones, including custom scoring 
+  matrices from the [`scoring-matrices`](https://scoring-matrices.readthedocs.io)
+  library.
 
+### 📋 Features
 
-<!-- ## 🔧 Installing
+PyCDHIT has the following roadmap to support the same features as the CD-HIT
+command line:
+
+- [x] CD-HIT with default parameters.
+- [x] Sequence identity threshold parameter (`-c`).
+- [ ] Local sequence identity mode (`-G 0`, additional parameters `-aL`, `-AL`, `-aS`, `-AS`).
+- [ ] Extended parameter support.
+- [ ] CD-HIT-EST.
+- [ ] CD-HIT-2D and CD-HIT-2D-EST.
+- [ ] CD-HIT-DIV
+- [ ] CD-HIT-454
+
+## 🔧 Installing
 
 PyCDHIT can be installed directly from [PyPI](https://pypi.org/project/pycdhit/),
 which hosts some pre-built wheels for common architectures & operating systems,
@@ -51,7 +68,7 @@ as well as the code required to compile from source with Cython:
 $ pip install pycdhit
 ```
 
-PyCDHIT is also available as a [Bioconda](https://bioconda.github.io/)
+<!-- PyCDHIT is also available as a [Bioconda](https://bioconda.github.io/)
 package:
 ```console
 $ conda install -c bioconda pycdhit
