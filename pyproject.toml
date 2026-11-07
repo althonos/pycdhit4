@@ -38,6 +38,15 @@ dependencies = [
     "scoring-matrices ~=0.3.0",
 ]
 
+[project.urls]
+"Homepage" = "https://github.com/althonos/pycdhit4/"
+#"Documentation" = "https://pycdhit4.readthedocs.io/en/stable/"
+"Bug Tracker" = "https://github.com/althonos/pycdhit4/issues"
+"Changelog" = "https://github.com/althonos/pycdhit4/blob/master/CHANGELOG.md"
+#"Coverage" = "https://codecov.io/gh/althonos/pycdhit4/"
+"Builds" = "https://github.com/althonos/pycdhit4/actions"
+"PyPI" = "https://pypi.org/project/pycdhit4"
+
 [project.optional-dependencies]
 test = ["importlib-resources ; python_version < '3.9'"]
 
