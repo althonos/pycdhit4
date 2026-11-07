@@ -1,2 +1,2 @@
 add_subdirectory(cdhit)
-add_subdirectory(pycdhit)
+add_subdirectory(pycdhit4)

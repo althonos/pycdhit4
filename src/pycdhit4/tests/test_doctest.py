@@ -13,7 +13,7 @@ import types
 import warnings
 from unittest import mock
 
-import pycdhit
+import pycdhit4
 
 
 def _load_tests_from_module(tests, module, globs, setUp=None, tearDown=None):
@@ -55,7 +55,7 @@ def load_tests(loader, tests, ignore):
         return tests
 
     # recursively traverse all library submodules and load tests from them
-    packages = [None, pycdhit]
+    packages = [None, pycdhit4]
 
     for pkg in iter(packages.pop, None):
         for _, subpkgname, subispkg in pkgutil.walk_packages(pkg.__path__):

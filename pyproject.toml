@@ -3,7 +3,7 @@ requires = ['scikit-build-core', 'cython ~=3.0', 'scoring-matrices ~=0.3.0']
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "pycdhit"
+name = "pycdhit4"
 version = "0.1.0-dev.1"
 description = "Cython bindings and Python interface to CD-HIT, an accelerated sequence clustering program."
 readme = "README.md"

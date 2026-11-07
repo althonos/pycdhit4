@@ -1,22 +1,22 @@
-# PyCDHIT [![Stars](https://img.shields.io/github/stars/althonos/pycdhit.svg?style=social&maxAge=3600&label=Star)](https://github.com/althonos/pycdhit/stargazers)
+# PyCDHIT4 [![Stars](https://img.shields.io/github/stars/althonos/pycdhit.svg?style=social&maxAge=3600&label=Star)](https://github.com/althonos/pycdhit/stargazers)
 
 *[Cython](https://cython.org/) bindings and Python interface to [CD-HIT](https://sites.google.com/view/cd-hit), an accelerated sequence clustering program..*
 
-[![Actions](https://img.shields.io/github/actions/workflow/status/althonos/pycdhit/test.yml?branch=main&logo=github&style=flat-square&maxAge=300)](https://github.com/althonos/pycdhit/actions)
-[![Coverage](https://img.shields.io/codecov/c/gh/althonos/pycdhit?style=flat-square&maxAge=3600&logo=codecov)](https://codecov.io/gh/althonos/pycdhit/)
+[![Actions](https://img.shields.io/github/actions/workflow/status/althonos/pycdhit4/test.yml?branch=main&logo=github&style=flat-square&maxAge=300)](https://github.com/althonos/pycdhit4/actions)
+[![Coverage](https://img.shields.io/codecov/c/gh/althonos/pycdhit4?style=flat-square&maxAge=3600&logo=codecov)](https://codecov.io/gh/althonos/pycdhit4/)
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square&maxAge=2678400)](https://choosealicense.com/licenses/gpl-3.0/)
-[![PyPI](https://img.shields.io/pypi/v/pycdhit.svg?style=flat-square&maxAge=3600&logo=PyPI)](https://pypi.org/project/pycdhit)
-[![Bioconda](https://img.shields.io/conda/vn/bioconda/pycdhit?style=flat-square&maxAge=3600&logo=anaconda)](https://anaconda.org/bioconda/pycdhit)
-[![AUR](https://img.shields.io/aur/version/python-pycdhit?logo=archlinux&style=flat-square&maxAge=3600)](https://aur.archlinux.org/packages/python-pycdhit)
-[![Wheel](https://img.shields.io/pypi/wheel/pycdhit.svg?style=flat-square&maxAge=3600)](https://pypi.org/project/pycdhit/#files)
-[![Python Versions](https://img.shields.io/pypi/pyversions/pycdhit.svg?style=flat-square&maxAge=600&logo=python)](https://pypi.org/project/pycdhit/#files)
-[![Python Implementations](https://img.shields.io/pypi/implementation/pycdhit.svg?style=flat-square&maxAge=600&label=impl)](https://pypi.org/project/pycdhit/#files)
-[![Source](https://img.shields.io/badge/source-GitHub-303030.svg?maxAge=2678400&style=flat-square)](https://github.com/althonos/pycdhit/)
-[![Mirror](https://img.shields.io/badge/mirror-EMBL-009f4d?style=flat-square&maxAge=2678400)](https://git.embl.de/larralde/pycdhit/)
-[![Issues](https://img.shields.io/github/issues/althonos/pycdhit.svg?style=flat-square&maxAge=600)](https://github.com/althonos/pycdhit/issues)
-[![Docs](https://img.shields.io/readthedocs/pycdhit/latest?style=flat-square&maxAge=600)](https://pycdhit.readthedocs.io)
-[![Changelog](https://img.shields.io/badge/keep%20a-changelog-8A0707.svg?maxAge=2678400&style=flat-square)](https://github.com/althonos/pycdhit/blob/main/CHANGELOG.md)
-[![Downloads](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fpepy.tech%2Fprojects%2Fpycdhit&search=%5B0-9%5D%2B.%5B0-9%5D%2B(k%7CM)&style=flat-square&label=downloads&color=303f9f&cacheSeconds=86400)](https://pepy.tech/project/pycdhit)
+[![PyPI](https://img.shields.io/pypi/v/pycdhit4.svg?style=flat-square&maxAge=3600&logo=PyPI)](https://pypi.org/project/pycdhit4)
+[![Bioconda](https://img.shields.io/conda/vn/bioconda/pycdhit4?style=flat-square&maxAge=3600&logo=anaconda)](https://anaconda.org/bioconda/pycdhit4)
+[![AUR](https://img.shields.io/aur/version/python-pycdhit4?logo=archlinux&style=flat-square&maxAge=3600)](https://aur.archlinux.org/packages/python-pycdhit4)
+[![Wheel](https://img.shields.io/pypi/wheel/pycdhit4.svg?style=flat-square&maxAge=3600)](https://pypi.org/project/pycdhit4/#files)
+[![Python Versions](https://img.shields.io/pypi/pyversions/pycdhit4.svg?style=flat-square&maxAge=600&logo=python)](https://pypi.org/project/pycdhit4/#files)
+[![Python Implementations](https://img.shields.io/pypi/implementation/pycdhit4.svg?style=flat-square&maxAge=600&label=impl)](https://pypi.org/project/pycdhit4/#files)
+[![Source](https://img.shields.io/badge/source-GitHub-303030.svg?maxAge=2678400&style=flat-square)](https://github.com/althonos/pycdhit4/)
+[![Mirror](https://img.shields.io/badge/mirror-EMBL-009f4d?style=flat-square&maxAge=2678400)](https://git.embl.de/larralde/pycdhit4/)
+[![Issues](https://img.shields.io/github/issues/althonos/pycdhit4.svg?style=flat-square&maxAge=600)](https://github.com/althonos/pycdhit4/issues)
+[![Docs](https://img.shields.io/readthedocs/pycdhit4/latest?style=flat-square&maxAge=600)](https://pycdhit4.readthedocs.io)
+[![Changelog](https://img.shields.io/badge/keep%20a-changelog-8A0707.svg?maxAge=2678400&style=flat-square)](https://github.com/althonos/pycdhit4/blob/main/CHANGELOG.md)
+[![Downloads](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fpepy.tech%2Fprojects%2Fpycdhit4&search=%5B0-9%5D%2B.%5B0-9%5D%2B(k%7CM)&style=flat-square&label=downloads&color=303f9f&cacheSeconds=86400)](https://pepy.tech/project/pycdhit4)
 
 
 ## 🗺️ Overview
@@ -28,13 +28,13 @@ to approximate sequence identity. Extensive parallelization later implemented by
 Limin Fu[\[2\]](#ref2) allow for a quasi-linear speed-up for up to 8 CPU cores, 
 a typical figure for consumer hardware.
 
-PyCDHIT is a Python module that provides bindings to CD-HIT
+PyCDHIT4 is a Python module that provides bindings to CD-HIT `v4.8`
 using [Cython](https://cython.org/). It implements a user-friendly, Pythonic
 interface to cluster biological sequences using different parameters and access
 results directly. It interacts with the CD-HIT library interface, which has
 the following advantages:
 
-- **single dependency**: PyCDHIT is distributed as a Python package, so you
+- **single dependency**: PyCDHIT4 is distributed as a Python package, so you
   can add it as a dependency to your project, and stop worrying about the
   CD-HIT binaries being present on the end-user machine.
 - **no intermediate files**: Everything happens in memory, through Python 
@@ -47,7 +47,7 @@ the following advantages:
 
 ### 📋 Features
 
-PyCDHIT has the following roadmap to support the same features as the CD-HIT
+PyCDHIT4 has the following roadmap to support the same features as the CD-HIT
 command line:
 
 - [x] CD-HIT with default parameters.
@@ -61,21 +61,21 @@ command line:
 
 ## 🔧 Installing
 
-PyCDHIT can be installed directly from [PyPI](https://pypi.org/project/pycdhit/),
+PyCDHIT4 can be installed directly from [PyPI](https://pypi.org/project/pycdhit4/),
 which hosts some pre-built wheels for common architectures & operating systems,
 as well as the code required to compile from source with Cython:
 ```console
-$ pip install pycdhit
+$ pip install pycdhit4
 ```
 
-<!-- PyCDHIT is also available as a [Bioconda](https://bioconda.github.io/)
+<!-- PyCDHIT4 is also available as a [Bioconda](https://bioconda.github.io/)
 package:
 ```console
-$ conda install -c bioconda pycdhit
+$ conda install -c bioconda pycdhit4
 ```
 
-Otherwise, have a look at the [Installation page](https://pycdhit.readthedocs.io/en/stable/guide/install.html) 
-of the [online documentation](https://pycdhit.readthedocs.io/) -->
+Otherwise, have a look at the [Installation page](https://pycdhit4.readthedocs.io/en/stable/guide/install.html) 
+of the [online documentation](https://pycdhit4.readthedocs.io/) -->
 
 ## 💡 Example
 
@@ -83,7 +83,7 @@ Let's create some sequences in memory, then cluster them with CD-HIT and default
 parameter, and finally print result:
 
 ```python
-import pycdhit
+import pycdhit4
 
 sequences = [
   "MKALIVLGLVLLSVTVQGKVFERCELARTLKRLGMDGYRGISLANWMCLAKWESGYNTRATNYNAGDRSTDYGIFQINSRYWCNDGKTPGAVNACHLSCSALLQDNIADAVACAKRVVRDPQGIRAWVAWRNRCQNRDVRQYVQGCGV",
@@ -92,7 +92,7 @@ sequences = [
   "MMSFFPLLLVGILFPAVQAKQLTKCALSHELNDLAGYRDITLPEWLCIIFHISGYDTQAIVKNSDHKEYGLFQINDKDFCESSTTVQSRNICDISCDKLLDDDLTDDIMCVKKILDIKGIDYWLAHKPLCSDKLEQWYCEAQ",
 ]
 
-clustering = pycdhit.cluster(sequences)
+clustering = pycdhit4.cluster(sequences)
 print("clusters: ", list(clustering.clusters))
 print("representatives: ", list(clustering.representatives))
 ```
@@ -126,7 +126,7 @@ which wraps [HMMER](http://hmmer.org/).
 ### ⚠️ Issue Tracker
 
 Found a bug ? Have an enhancement request ? Head over to the 
-[GitHub issue tracker](https://github.com/althonos/pycdhit/issues)
+[GitHub issue tracker](https://github.com/althonos/pycdhit4/issues)
 if you need to report or ask something. If you are filing in on a bug,
 please include as much information as you can about the issue, and try to
 recreate the same bug in a simple, easily reproducible situation.
@@ -135,14 +135,14 @@ recreate the same bug in a simple, easily reproducible situation.
 ### 🏗️ Contributing
 
 Contributions are more than welcome! See
-[`CONTRIBUTING.md`](https://github.com/althonos/pycdhit/blob/main/CONTRIBUTING.md)
+[`CONTRIBUTING.md`](https://github.com/althonos/pycdhit4/blob/main/CONTRIBUTING.md)
 for more details.
 
 
 ## 📋 Changelog
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
-and provides a [changelog](https://github.com/althonos/pycdhit/blob/main/CHANGELOG.md)
+and provides a [changelog](https://github.com/althonos/pycdhit4/blob/main/CHANGELOG.md)
 in the [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) format.
 
 
