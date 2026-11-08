@@ -91,7 +91,7 @@ cmake.define.CMAKE_LINKER_TYPE = "mold"
 before-build = "pip install scikit-build-core cython"
 build-frontend = { name = "pip", args = ["--no-build-isolation"] }
 build-verbosity = 1
-test-command = "python -m unittest pycdhit.tests -v"
+test-command = "python -m unittest pycdhit4.tests -v"
 test-extras = ["test"]
 
 [tool.cibuildwheel.linux]

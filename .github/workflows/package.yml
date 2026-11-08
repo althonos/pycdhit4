@@ -131,9 +131,9 @@ jobs:
     - name: Create virtualenv
       run: pyodide venv .venv-pyodide
     - name: Install WebAssembly wheel
-      run: .venv-pyodide/bin/pip install dist/pycdhit-*.whl
+      run: .venv-pyodide/bin/pip install dist/pycdhit4-*.whl
     - name: Run tests
-      run: .venv-pyodide/bin/python -m unittest pycdhit.tests -vv
+      run: .venv-pyodide/bin/python -m unittest pycdhit4.tests -vv
     - uses: actions/upload-artifact@v4
       with:
         name: wheels-wasm
@@ -178,9 +178,9 @@ jobs:
     - name: Update pip to latest version
       run: python -m pip install -U pip
     - name: Install built wheel
-      run: python -m pip install --no-binary pycdhit --find-links=dist pycdhit
+      run: python -m pip install --no-binary pycdhit4 --find-links=dist pycdhit4
     - name: Run tests without coverage
-      run: python -m unittest pycdhit.tests -vv
+      run: python -m unittest pycdhit4.tests -vv
 
   upload:
     environment: PyPI
@@ -251,13 +251,13 @@ jobs:
   #   - name: Extract package version
   #     run: echo PKGVER=$(echo '${{ github.ref }}' | cut -d'v' -f2) >> $GITHUB_ENV
   #   - name: Compute SHA256 of source distribution
-  #     run: echo SHA256=$(sha256sum dist/pycdhit-${{ env.PKGVER }}.tar.gz | cut -f1 -d' ') >> $GITHUB_ENV
+  #     run: echo SHA256=$(sha256sum dist/pycdhit4-${{ env.PKGVER }}.tar.gz | cut -f1 -d' ') >> $GITHUB_ENV
   #   - name: Generate PKGBUILD
   #     run: sed -e "s/%pkgver/${{ env.PKGVER }}/g" -e "s/%sha256sum/${{ env.SHA256 }}/g" pkg/aur/PKGBUILD.in > pkg/aur/PKGBUILD
   #   - name: Update package
   #     uses: KSXGitHub/github-actions-deploy-aur@v2.7.2
   #     with:
-  #       pkgname: python-pycdhit
+  #       pkgname: python-pycdhit4
   #       pkgbuild: pkg/aur/PKGBUILD
   #       commit_username: ${{ secrets.AUR_USER }}
   #       commit_email: ${{ secrets.AUR_EMAIL }}
