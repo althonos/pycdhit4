@@ -61,7 +61,7 @@ jobs:
     - name: Build extension in debug mode
       run: python -m pip install -v -e . --no-build-isolation
     - name: Test extension
-      run: python -m unittest pycdhit.tests -vv
+      run: python -m unittest pycdhit4.tests -vv
     # - name: Upload to Codecov
     #   if: matrix.python-impl == 'CPython'
     #   uses: codecov/codecov-action@v3
@@ -133,7 +133,7 @@ jobs:
     - name: Build extension in debug mode
       run: python -m pip install -v -e . --no-build-isolation -C cmake.define.CMAKE_C_COMPILER=$(brew --prefix llvm)/bin/clang -C cmake.define.CMAKE_CXX_COMPILER=$(brew --prefix llvm)/bin/clang++
     - name: Test extension
-      run: python -m unittest pycdhit.tests -vv
+      run: python -m unittest pycdhit4.tests -vv
     # - name: Upload to Codecov
     #   if: matrix.python-impl == 'CPython'
     #   uses: codecov/codecov-action@v3
@@ -199,4 +199,4 @@ jobs:
     - name: Build extension in debug mode
       run: python -m pip install -v . --no-build-isolation
     - name: Test extension
-      run: python -m unittest pycdhit.tests -vv
+      run: python -m unittest pycdhit4.tests -vv
